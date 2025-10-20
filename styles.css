@@ -1,13 +1,15 @@
 :root {
     --header-gray: #222222;
+    --body-gray: #444444;
     --text-color: whitesmoke;
     --orange-accent: orange;
     --blue-accent: lightblue;
 }
 
 /* RESET */
-body, h1, h2, h3, h4, h5, h6, p, a, button, input {
+body, h1, h2, h3, h4, h5, h6, p, a, ul, li, button, input, header, main {
     margin: 0;
+    padding: 0;
 }
 
 /* FONT */
@@ -32,7 +34,8 @@ body, h1, h2, h3, h4, h5, h6, p, a, button, input {
 
 /* DEFAULTS */
 body {
-    color: var(--text-color)
+    background-color: var(--body-gray);
+    color: var(--text-color);
 }
 
 h1 {
@@ -58,4 +61,73 @@ header a {
 
 header a:hover {
     color: var(--blue-accent);
+}
+
+/* LIST */
+#list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+
+    padding: 50px;
+
+    list-style: none;
+}
+
+.list-element {
+    width: fit-content;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 20px;
+
+    background-color: var(--header-gray);
+    color: gray;
+}
+
+.list-element * {
+    font-size: 16px;
+}
+
+.list-text {
+    width: 300px;
+
+    margin-right: 15px;
+    padding: 5px;
+    border: 2px solid var(--body-gray);
+    border-radius: 10px;
+
+    background-color: var(--text-color);
+    color: var(--header-gray);
+}
+
+.list-date {
+    width: 125px;
+    text-align: center;
+
+    margin-right: 15px;
+    padding: 5px;
+    border: 2px solid var(--body-gray);
+    border-radius: 10px;
+
+    background-color: var(--text-color);
+    color: var(--header-gray);
+}
+
+.list-btn {
+    width: 75px;
+    text-align: center;
+
+    padding: 5px;
+    border: 2px solid var(--body-gray);
+    border-radius: 10px;
+
+    background-color: var(--text-color);
+    color: var(--header-gray);
 }
