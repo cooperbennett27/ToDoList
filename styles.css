@@ -1,0 +1,61 @@
+:root {
+    --header-gray: #222222;
+    --text-color: whitesmoke;
+    --orange-accent: orange;
+    --blue-accent: lightblue;
+}
+
+/* RESET */
+body, h1, h2, h3, h4, h5, h6, p, a, button, input {
+    margin: 0;
+}
+
+/* FONT */
+.roboto-normal {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+
+/* DEFAULTS */
+body {
+    color: var(--text-color)
+}
+
+h1 {
+    font-size: 32px;
+}
+
+p {
+    font-size: 16px;
+}
+
+/* HEADER */
+header {
+    padding: 30px 15px;
+
+    text-align: center;
+
+    background-color: var(--header-gray);
+}
+
+header a {
+    color: var(--orange-accent);
+}
+
+header a:hover {
+    color: var(--blue-accent);
+}
