@@ -64,13 +64,20 @@ header a:hover {
 }
 
 /* LIST */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
 #list {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
 
-    padding: 50px;
+    margin-top: 50px;
 
     list-style: none;
 }
@@ -93,13 +100,13 @@ header a:hover {
 
 .list-element * {
     font-size: 16px;
+    height: 35px;
 }
 
 .list-text {
     width: 300px;
 
     margin-right: 15px;
-    padding: 5px;
     border: 2px solid var(--body-gray);
     border-radius: 10px;
 
@@ -112,7 +119,6 @@ header a:hover {
     text-align: center;
 
     margin-right: 15px;
-    padding: 5px;
     border: 2px solid var(--body-gray);
     border-radius: 10px;
 
@@ -124,10 +130,13 @@ header a:hover {
     width: 75px;
     text-align: center;
 
-    padding: 5px;
     border: 2px solid var(--body-gray);
     border-radius: 10px;
 
-    background-color: var(--text-color);
+    background-color: var(--orange-accent);
     color: var(--header-gray);
+}
+
+#add-btn {
+    background-color: var(--blue-accent);
 }
