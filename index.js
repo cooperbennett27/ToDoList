@@ -13,7 +13,7 @@ addBtn.addEventListener("click", function() {
     }
     else {
         errText.style.visibility = "hidden";
-        createElement(textInput.value, dateInput.value);
+        createElement(textInput.value, new Date(dateInput.value));
         storeItem(textInput.value, dateInput.value);
         textInput.value = "";
         dateInput.value = "";
@@ -23,7 +23,7 @@ addBtn.addEventListener("click", function() {
 function createElement(text, date){
     let html = `<li class="list-element">
                     <p class="list-text roboto-normal">${text}</p>
-                    <p class="list-date roboto-normal">${date}</p>
+                    <p class="list-date roboto-normal">${dateToString(date)}</p>
                     <button class="list-btn">DONE</button>
                 </li>`
     const templateElement = document.createElement("template");
@@ -32,12 +32,20 @@ function createElement(text, date){
 }
 
 // removing elements
-list.addEventListener("click", function() {
+list.addEventListener("click", function(event) {
     if (event.target.classList.contains("list-btn")) {
         removeFromStorage(event.target.parentElement.querySelector(".list-text").textContent);
         event.target.parentElement.remove();
     }
 })
+
+// date operations
+function dateToString(date) {
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+}
 
 // localStorage
 function storeItem(text, date) {
