@@ -14,7 +14,7 @@ addBtn.addEventListener("click", function() {
     else {
         errText.style.visibility = "hidden";
         createElement(textInput.value, new Date(dateInput.value));
-        storeItem(textInput.value, dateInput.value);
+        storeItem(textInput.value, new Date(dateInput.value));
         textInput.value = "";
         dateInput.value = "";
     }
@@ -54,7 +54,7 @@ function storeItem(text, date) {
 
 function loadData() {
     Object.keys(localStorage).forEach(key => {
-        createElement(key, localStorage.getItem(key));
+        createElement(key, new Date(localStorage.getItem(key)));
     })
 }
 
