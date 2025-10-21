@@ -14,6 +14,7 @@ addBtn.addEventListener("click", function() {
     else {
         errText.style.visibility = "hidden";
         createElement(textInput.value, dateInput.value);
+        storeItem(textInput.value, dateInput.value);
         textInput.value = "";
         dateInput.value = "";
     }
@@ -33,8 +34,26 @@ function createElement(text, date){
 // removing elements
 list.addEventListener("click", function() {
     if (event.target.classList.contains("list-btn")) {
+        removeFromStorage(event.target.parentElement.querySelector(".list-text").textContent);
         event.target.parentElement.remove();
     }
 })
 
+// localStorage
+function storeItem(text, date) {
+    localStorage.setItem(text, date);
+}
+
+function loadData() {
+    Object.keys(localStorage).forEach(key => {
+        createElement(key, localStorage.getItem(key));
+    })
+}
+
+function removeFromStorage(key) {
+    localStorage.removeItem(key);
+}
+
+// main
 errText.style.visibility = "hidden";
+loadData();
