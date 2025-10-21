@@ -4,7 +4,8 @@ const dateInput = document.getElementById("list-date-input");
 
 const addBtn = document.getElementById("add-btn");
 
-addBtn.addEventListener("click", function addElement() {
+// adding elements
+addBtn.addEventListener("click", function() {
     createElement(textInput.value, dateInput.value);
 })
 
@@ -18,3 +19,10 @@ function createElement(text, date){
     templateElement.innerHTML = html;
     list.appendChild(templateElement.content.firstChild);
 }
+
+// removing elements
+list.addEventListener("click", function() {
+    if (event.target.classList.contains("list-btn")) {
+        event.target.parentElement.remove();
+    }
+})
