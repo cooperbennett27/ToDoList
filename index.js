@@ -4,9 +4,19 @@ const dateInput = document.getElementById("list-date-input");
 
 const addBtn = document.getElementById("add-btn");
 
+const errText = document.getElementById("error-text");
+
 // adding elements
 addBtn.addEventListener("click", function() {
-    createElement(textInput.value, dateInput.value);
+    if (textInput.value == "" || dateInput.value == "") {
+        errText.style.visibility = "visible";
+    }
+    else {
+        errText.style.visibility = "hidden";
+        createElement(textInput.value, dateInput.value);
+        textInput.value = "";
+        dateInput.value = "";
+    }
 })
 
 function createElement(text, date){
@@ -26,3 +36,5 @@ list.addEventListener("click", function() {
         event.target.parentElement.remove();
     }
 })
+
+errText.style.visibility = "hidden";

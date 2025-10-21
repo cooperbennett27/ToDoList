@@ -100,13 +100,14 @@ main {
 
 .list-element * {
     font-size: 16px;
-    height: 35px;
+    padding: 8px 0px;
 }
 
-.list-text {
+.list-text, #list-text-input {
     width: 300px;
 
     margin-right: 15px;
+    padding-left: 15px;
     border: 2px solid var(--body-gray);
     border-radius: 10px;
 
@@ -114,7 +115,7 @@ main {
     color: var(--header-gray);
 }
 
-.list-date {
+.list-date, #list-date-input {
     width: 125px;
     text-align: center;
 
@@ -139,4 +140,8 @@ main {
 
 #add-btn {
     background-color: var(--blue-accent);
+}
+
+#error-text {
+    color: red;
 }
