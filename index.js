@@ -13,8 +13,8 @@ addBtn.addEventListener("click", function() {
     }
     else {
         errText.style.visibility = "hidden";
-        createElement(textInput.value, new Date(dateInput.value));
-        storeItem(textInput.value, new Date(dateInput.value));
+        createElement(textInput.value, dateInput.value);
+        storeItem(textInput.value, dateInput.value);
         textInput.value = "";
         dateInput.value = "";
     }
@@ -41,9 +41,7 @@ list.addEventListener("click", function(event) {
 
 // date operations
 function dateToString(date) {
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const year = date.getFullYear();
+    const [year, month, day] = date.split("-");
     return `${month}/${day}/${year}`;
 }
 
