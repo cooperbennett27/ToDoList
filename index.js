@@ -6,6 +6,8 @@ const addBtn = document.getElementById("add-btn");
 
 const errText = document.getElementById("error-text");
 
+let curId = 0;
+
 // adding elements
 addBtn.addEventListener("click", function() {
     if (textInput.value == "" || dateInput.value == "") {
@@ -13,18 +15,19 @@ addBtn.addEventListener("click", function() {
     }
     else {
         errText.style.visibility = "hidden";
-        createElement(textInput.value, dateInput.value);
-        storeItem(textInput.value, dateInput.value);
+        createElement(textInput.value, dateInput.value, curId);
+        storeItem(textInput.value, dateInput.value, curId);
+        curId++;
         textInput.value = "";
         dateInput.value = "";
     }
 })
 
-function createElement(text, date){
+function createElement(text, date, id){
     let html = `<li class="list-element">
                     <p class="list-text roboto-normal">${text}</p>
                     <p class="list-date roboto-normal">${dateToString(date)}</p>
-                    <button class="list-btn">DONE</button>
+                    <button id="${id}" class="list-btn">DONE</button>
                 </li>`
     const templateElement = document.createElement("template");
     templateElement.innerHTML = html;
@@ -34,7 +37,7 @@ function createElement(text, date){
 // removing elements
 list.addEventListener("click", function(event) {
     if (event.target.classList.contains("list-btn")) {
-        removeFromStorage(event.target.parentElement.querySelector(".list-text").textContent);
+        removeFromStorage(event.target.id);
         event.target.parentElement.remove();
     }
 })
@@ -46,18 +49,23 @@ function dateToString(date) {
 }
 
 // localStorage
-function storeItem(text, date) {
-    localStorage.setItem(text, date);
+function storeItem(text, date, id) {
+    const item = {itemText: text, itemDate: date};
+    localStorage.setItem(curId, JSON.stringify(item));
+    localStorage.setItem("id", id);
 }
 
 function loadData() {
     Object.keys(localStorage).forEach(key => {
-        createElement(key, new Date(localStorage.getItem(key)));
+        if (key == "id") return;
+        const item = JSON.parse(localStorage.getItem(key));
+        createElement(item.itemText, item.itemDate);
     })
+    curId = Number(localStorage.getItem("id"));
 }
 
-function removeFromStorage(key) {
-    localStorage.removeItem(key);
+function removeFromStorage(id) {
+    localStorage.removeItem(id);
 }
 
 // main
