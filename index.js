@@ -15,11 +15,10 @@ addBtn.addEventListener("click", function() {
     }
     else {
         errText.style.visibility = "hidden";
-        createElement(textInput.value, dateInput.value, curId);
-        storeItem(textInput.value, dateInput.value, curId);
-        curId++;
+        storeItem(textInput.value, dateInput.value);
         textInput.value = "";
         dateInput.value = "";
+        loadData();
     }
 })
 
@@ -49,18 +48,28 @@ function dateToString(date) {
 }
 
 // localStorage
-function storeItem(text, date, id) {
+function storeItem(text, date) {
     const item = {itemText: text, itemDate: date};
     localStorage.setItem(curId, JSON.stringify(item));
-    localStorage.setItem("id", id);
+    curId++;
+    localStorage.setItem("id", curId);
 }
 
 function loadData() {
+    list.innerHTML = "";
+
+    let items = [];
     Object.keys(localStorage).forEach(key => {
         if (key == "id") return;
         const item = JSON.parse(localStorage.getItem(key));
-        createElement(item.itemText, item.itemDate);
+        item.id = key;
+        items.push(item);
     })
+
+    items.sort((a, b) => new Date(a.itemDate) - new Date(b.itemDate));
+
+    items.forEach((i) => createElement(i.itemText, i.itemDate, i.id));
+
     curId = Number(localStorage.getItem("id"));
 }
 
